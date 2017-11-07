@@ -1,11 +1,11 @@
 package com.ogasimov.labs.springcloud.microservices.bill;
 
-import java.util.List;
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -23,7 +23,7 @@ public class BillService {
     public void payBills(Integer tableId) {
         List<Bill> bills = billRepository.findAllByTableId(tableId);
         if (bills.isEmpty()) {
-            throw  new EntityNotFoundException("Bills not found");
+            throw new EntityNotFoundException("Bills not found");
         }
         billRepository.delete(bills);
     }
